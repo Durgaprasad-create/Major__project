@@ -1,0 +1,12 @@
+{% extends 'job_app/base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Employer Registration</h2>
+    <form method="POST" enctype="multipart/form-data">>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+{% endblock %}
+    

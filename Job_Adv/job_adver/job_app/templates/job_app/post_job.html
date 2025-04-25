@@ -1,0 +1,22 @@
+{% extends 'job_app/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-4">Post a Job</h2>
+
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <strong>There were errors in your form:</strong>
+            <ul>
+                {{ form.errors }}
+            </ul>
+        </div>
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Post Job</button>
+    </form>
+</div>
+{% endblock %}

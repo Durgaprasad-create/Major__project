@@ -1,0 +1,26 @@
+{% extends 'job_app/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ job.JobRole }} - Applicants</h2>
+    <p><strong>Company:</strong> {{ job.CompanyName }}</p>
+    <p><strong>Location:</strong> {{ job.location }}</p>
+    
+    <hr>
+
+    <h5>Applicants:</h5>
+    {% if applicants %}
+        <ul class="list-group">
+            {% for application in applicants %}
+                <li class="list-group-item">
+                    <strong>{{ application.applicant.username }}</strong> 
+                    <p>{{ application.cover_letter }}</p>
+                    <p><a href="mailto:{{ application.applicant.email }}" class="btn btn-info btn-sm">Contact</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No applicants have applied yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'job_app/base.html' %}
+
+{% block content %}
+<h2>Register</h2>
+<p>Choose your role:</p>
+
+<a href="{% url 'employee_register' %}">
+    <button>Register as Employee</button>
+</a>
+
+<a href="{% url 'employer_register' %}">
+    <button>Register as Employer</button>
+</a>
+
+{% endblock %}
+    

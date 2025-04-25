@@ -1,0 +1,64 @@
+{% extends 'job_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Edit Profile</h2>
+  <div class="card p-4 shadow rounded">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- Profile Picture Uploader -->
+      <div class="text-center mb-4">
+        <img src="{{ user.profile.profile_picture.url|default_if_none:'/static/images/default_profile.png' }}"
+             alt="Profile Picture"
+             class="rounded-circle shadow"
+             width="150" height="150">
+        <br>
+        <input type="file" name="profile_picture" id="fileInput" style="display:none;"
+               onchange="this.form.submit();">
+        <button type="button" class="btn btn-outline-primary mt-3"
+                onclick="document.getElementById('fileInput').click();">
+          Update Profile Picture
+        </button>
+      </div>
+
+      <!-- Name & Email in one row with Edit/Save -->
+      <div class="row align-items-end">
+        <div class="col-md-8">
+          <div class="mb-3">
+            <label for="user_name" class="form-label">User Name</label>
+            <input type="text" name="user_name" id="user_name" class="form-control"
+                   value="{{ user.username }}" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" name="email" id="email" class="form-control"
+                   value="{{ user.email }}" disabled>
+          </div>
+        </div>
+        <div class="col-md-4 text-end">
+          <button type="button" id="editBtn" class="btn btn-primary mb-3">Edit</button>
+          <button type="submit" id="saveBtn" class="btn btn-success mb-3" style="display:none;">
+            Save
+          </button>
+        </div>
+      </div>
+
+      <!-- Back to Dashboard -->
+      <a href="{% url 'dashboard' %}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.getElementById('editBtn').addEventListener('click', function() {
+    // enable the inputs
+    document.getElementById('user_name').disabled = false;
+    document.getElementById('email').disabled     = false;
+    // swap buttons
+    this.style.display = 'none';
+    document.getElementById('saveBtn').style.display = 'inline-block';
+  });
+</script>
+{% endblock %}

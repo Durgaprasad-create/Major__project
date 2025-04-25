@@ -1,0 +1,30 @@
+{% extends 'job_app/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Available Jobs</h2>
+
+    {% if keyword or location %}
+    <p>Showing results for:
+        {% if keyword %}"<strong>{{ keyword }}</strong>" {% endif %}
+        {% if location %}in <strong>{{ location }}</strong>{% endif %}
+    </p>
+    {% endif %}
+
+    {% for Job in Jobs %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h4 class="card-title">{{ Job.JobRole }}</h4> 
+            <h6 class="card-subtitle mb-2 text-muted">{{ Job.company }} — {{ Job.location }}</h6> 
+            <p><strong>Category:</strong> {{ Job.category }}</p>
+            <p>{{ Job.description }}</p>
+            <p class="text-muted"><small>Posted on {{ Job.posted_on|date:"F d, Y" }}</small></p> 
+            <a href="{% url 'job_detail' job_id=Job.id %}" class="btn btn-primary">View Details</a>
+        </div>
+    </div>
+    {% empty %}
+        <p>No jobs available yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
