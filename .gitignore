@@ -1,0 +1,34 @@
+# Ignore everything except project
+*.pyc
+__pycache__/
+db.sqlite3
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.log
+.env
+.kaggle/
+myenv/
+envmj/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.ipynb_checkpoints/
+# Ignore system folders
+/Contacts/
+/Documents/
+/Downloads/
+/Favorites/
+/Music/
+/Pictures/
+/Saved Games/
+/Searches/
+/Videos/
+/WPS Cloud Files/
+/VirtualBox VMs/
+/OneDrive/
+/*.py
+/*.json
+
