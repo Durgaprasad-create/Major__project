@@ -2,61 +2,69 @@
 
 {% block content %}
 <div class="container mt-5">
-    <!-- Hero Section -->
-    <div class="jumbotron text-center bg-primary text-white p-5">
-        <h1>Find Your Dream Job</h1>
-        <p>Search thousands of job listings from top companies</p>
-        <form method="get" action="{% url 'job_list' %}" class="form-inline justify-content-center mt-3">
-            <input class="form-control mr-2" type="text" name="keyword" placeholder="Job title, keywords...">
-            <input class="form-control mr-2" type="text" name="location" placeholder="Location">
-            <button class="btn btn-dark" type="submit">Search Jobs</button>
+
+    <!-- Hero Section (Bootstrap 5 Compatible) -->
+   <section class="text-center p-5 rounded-4 shadow-lg" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);" data-aos="fade-down">
+    <div class="container">
+        <h1 class="display-4 fw-bold text-white mb-3">Find Your Dream Job</h1>
+        <p class="lead text-white-50 mb-4">Search thousands of job listings from top companies</p>
+        <form method="get" action="{% url 'job_list' %}" class="row g-2 justify-content-center">
+            <div class="col-md-3">
+                <input class="form-control rounded-pill" type="text" name="keyword" placeholder="Job title, keywords...">
+            </div>
+            <div class="col-md-3">
+                <input class="form-control rounded-pill" type="text" name="location" placeholder="Location">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-dark rounded-pill w-100" type="submit">Search Jobs</button>
+            </div>
         </form>
     </div>
+   </section>
 
-    <!-- Featured Job Categories -->
     <!-- Popular Job Categories -->
-<h2 class="text-center my-4">Popular Job Categories</h2>
-<div class="row text-center">
-    <div class="col-md-3">
-        <a href="{% url 'job_category' category='software-development' %}" class="btn btn-outline-primary w-100 p-3">
-            Software Development
-        </a>
-    </div>
-    <div class="col-md-3">
-        <a href="{% url 'job_category' category='marketing' %}" class="btn btn-outline-primary w-100 p-3">
-            Marketing
-        </a>
-    </div>
-    <div class="col-md-3">
-        <a href="{% url 'job_category' category='finance' %}" class="btn btn-outline-primary w-100 p-3">
-            Finance
-        </a>
-    </div>
-    <div class="col-md-3">
-        <a href="{% url 'job_category' category='healthcare' %}" class="btn btn-outline-primary w-100 p-3">
-            Healthcare
-        </a>
-    </div>
-</div>
-   
-<!-- Latest Jobs Section -->
-<h2 class="text-center my-4">Latest Job Listings</h2>
-<div class="row">
-    {% if Jobs %}
-        {% for job in Jobs %}
-        <div class="col-md-4 mb-3">
-            <div class="card p-3">
-                <h5>{{ job.JobRole }}</h5>
-                <p><strong>Company:</strong> {{ job.company }}</p>
-                <p><strong>Location:</strong> {{ job.location }}</p>
-                <a href="{% url 'job_detail' job.id %}" class="btn btn-primary">View Details</a>
-            </div>
+    <h2 class="text-center my-5 fw-bold" data-aos="fade-up">Popular Job Categories</h2>
+    <div class="row text-center g-4">
+        <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+            <a href="{% url 'job_category' category='software-development' %}" class="btn btn-outline-primary w-100 p-4 rounded-4 shadow-sm">
+                Software Development
+            </a>
         </div>
-        {% endfor %}
-    {% else %}
-        <p class="text-center w-100">No recent job listings available.</p>
-    {% endif %}
-</div>
+        <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+            <a href="{% url 'job_category' category='marketing' %}" class="btn btn-outline-primary w-100 p-4 rounded-4 shadow-sm">
+                Marketing
+            </a>
+        </div>
+        <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+            <a href="{% url 'job_category' category='finance' %}" class="btn btn-outline-primary w-100 p-4 rounded-4 shadow-sm">
+                Finance
+            </a>
+        </div>
+        <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+            <a href="{% url 'job_category' category='healthcare' %}" class="btn btn-outline-primary w-100 p-4 rounded-4 shadow-sm">
+                Healthcare
+            </a>
+        </div>
+    </div>
 
+    <!-- Latest Jobs Section -->
+    <h2 class="text-center my-5 fw-bold" data-aos="fade-up">Latest Job Listings</h2>
+    <div class="row g-4">
+        {% if Jobs %}
+            {% for job in Jobs %}
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4">
+                    <h5 class="card-title fw-bold">{{ job.JobRole }}</h5>
+                    <p class="card-text"><strong>Company:</strong> {{ job.company }}</p>
+                    <p class="card-text"><strong>Location:</strong> {{ job.location }}</p>
+                    <a href="{% url 'job_detail' job.id %}" class="btn btn-primary rounded-pill mt-auto">View Details</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center w-100">No recent job listings available.</p>
+        {% endif %}
+    </div>
+
+</div>
 {% endblock %}
-    

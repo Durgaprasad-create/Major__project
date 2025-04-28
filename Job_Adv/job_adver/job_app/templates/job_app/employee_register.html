@@ -1,11 +1,44 @@
 {% extends 'job_app/base.html' %}
+
 {% block content %}
-<div class="container">
-    <h2>Employee Registration</h2>
-    <form method="POST" enctype="multipart/form-data">
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Employee Registration</h2>
+    <form method="POST" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Register</button>
+        
+        <div class="form-group mb-3">
+            <label for="id_username" class="form-label font-weight-bold">Username</label>
+            {{ form.username }}
+            <small class="form-text text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="id_email" class="form-label font-weight-bold">Email address</label>
+            {{ form.email }}
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="id_password1" class="form-label font-weight-bold">Password</label>
+            {{ form.password1 }}
+            <small class="form-text text-muted">Your password must contain at least 8 characters and cannot be a commonly used password.</small>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="id_password2" class="form-label font-weight-bold">Confirm Password</label>
+            {{ form.password2 }}
+            <small class="form-text text-muted">Enter the same password as before, for verification.</small>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="id_profile_picture" class="form-label font-weight-bold">Profile Picture</label>
+            {{ form.profile_picture }}
+            <small class="form-text text-muted">No file chosen</small>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary px-4">Register</button>
+            <a href="{% url 'login' %}" class="btn btn-link">Already have an account? Login</a>
+        </div>
     </form>
 </div>
 {% endblock %}

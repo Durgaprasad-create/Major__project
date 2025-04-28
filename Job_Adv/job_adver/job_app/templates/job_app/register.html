@@ -1,16 +1,16 @@
 {% extends 'job_app/base.html' %}
 
 {% block content %}
-<h2>Register</h2>
-<p>Choose your role:</p>
-
-<a href="{% url 'employee_register' %}">
-    <button>Register as Employee</button>
-</a>
-
-<a href="{% url 'employer_register' %}">
-    <button>Register as Employer</button>
-</a>
-
+<div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 80vh;">
+    <div class="card p-5 shadow-lg text-center" style="max-width: 500px; width: 100%;">
+        <h2 class="mb-4 text-primary">Register</h2>
+        <p class="mb-4">Choose your role to get started:</p>
+        
+        <div class="d-grid gap-3">
+            <a href="{% url 'employee_register' %}" class="btn btn-outline-primary btn-lg">Register as Employee</a>
+            <a href="{% url 'employer_register' %}" class="btn btn-outline-primary btn-lg">Register as Employer</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
     
